@@ -10,16 +10,6 @@ public class GameOver : MonoBehaviour {
     public GameObject gameOverPanel;
     public GameObject gameOverText;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     public void GameOverDetail()
     {
         gameOverPanel.SetActive(true);
@@ -33,18 +23,7 @@ public class GameOver : MonoBehaviour {
         alicia.transform.LookAt(new Vector3(alicia.transform.position.x, alicia.transform.position.y, alicia.transform.position.z - 1));
         alicia.GetComponent<VRMBlendShapeProxy>().SetValue("Sorrow",1);
 
-        StartCoroutine("LoadSceneCoroutine");
+        GetComponent<WaitForSecondSceneChange>().SceneChange("Result_GameOver_Master");
+
     }
-
-    IEnumerator LoadSceneCoroutine()
-    {
-        int time = 4;
-        for (int i = 0; i < time; i++)
-        {
-            yield return new WaitForSeconds(1);
-        }
-
-        SceneManager.LoadScene("Result_GameOver_Master");
-    }
-
 }

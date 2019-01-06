@@ -2,29 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ToPlayScene : MonoBehaviour {
-
+public class ToMenuScene : MonoBehaviour
+{
     private FadeOutSceneChange fadeOutSceneChange;
-    private PlaySoundEffect playSoundEffect;
 
-    void Start () {
+    void Start()
+    {
         fadeOutSceneChange = GetComponent<FadeOutSceneChange>();
-        playSoundEffect = GetComponent<PlaySoundEffect>();
     }
-	
-	void Update () {
 
+    void Update()
+    {
         if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
         {
-            playSoundEffect.Sound();
-            fadeOutSceneChange.SceneChange("Play_Master");
+            fadeOutSceneChange.SceneChange("Select_Master");
         }
 
         // for Debug
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            playSoundEffect.Sound();
-            fadeOutSceneChange.SceneChange("Play_Master");
+            fadeOutSceneChange.SceneChange("Select_Master");
         }
+        
     }
 }

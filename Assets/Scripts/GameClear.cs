@@ -10,16 +10,6 @@ public class GameClear : MonoBehaviour {
     public GameObject gameClearPanel;
     public GameObject gameClearText;
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     public void GameClearDetail()
     {
         gameClearPanel.SetActive(true);
@@ -34,21 +24,6 @@ public class GameClear : MonoBehaviour {
         alicia.GetComponent<VRMBlendShapeProxy>().SetValue("Fun", 1);
 
         GetComponent<EnemyExtinction>().Extinction();
-
-        StartCoroutine("LoadSceneCoroutine");
-
+        GetComponent<WaitForSecondSceneChange>().SceneChange("Result_GameClear_Master");
     }
-
-    IEnumerator LoadSceneCoroutine()
-    {
-        int time = 4;
-        for (int i = 0; i < time; i++)
-        {
-            yield return new WaitForSeconds(1);
-        }
-
-        SceneManager.LoadScene("Result_GameClear_Master");
-    }
-
-
 }

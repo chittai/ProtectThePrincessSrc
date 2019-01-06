@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using VRM;
 
-public class PrincessMoving : MonoBehaviour {
+public class PrincessMoving : MonoBehaviour
+{
 
     private bool isMoving;
     public bool movingStatus
     {
         get { return isMoving; }
-        set { isMoving = value;}
+        set { isMoving = value; }
     }
 
-    private bool isRunning;
+    private bool isArrivedDestination;
     public bool runningStatus
     {
-        get { return isRunning; }
-        set { isRunning = value; }
+        get { return isArrivedDestination; }
+        set { isArrivedDestination = value; }
     }
 
     private Vector3 origin;
@@ -29,66 +30,76 @@ public class PrincessMoving : MonoBehaviour {
 
     private IEnumerator runningCoroutine;
 
-    void Start () {
+    void Start()
+    {
         isMoving = false;
         animator = GetComponent<Animator>();
-        isRunning = true;
+        isArrivedDestination = false;
         destination_x = 0;
         proxy = GetComponent<VRMBlendShapeProxy>();
-        proxy.SetValue("BLENDSHAPE.PUZZLE", 1);
-
+        proxy.SetValue(FacialExpressions.Puzzle.ToString(), 1);
     }
 
-    void Update () {
-        
-        if (isMoving)
+    void Update()
+    {
+
+        if (isMoving && isArrivedDestination)
         {
-            //Debug.Log("transform.position : " + this.transform.position);
-            //Debug.Log("Destination : " + destination);
-
-            if (!isRunning)
-            {
-                animator.SetBool("isRunning", false);
-                if(runningCoroutine != null) StopCoroutine(runningCoroutine);
-                origin_x = destination_x;
-                transform.LookAt(new Vector3(transform.position.x, transform.position.y, transform.position.z -1));
-                proxy.SetValue("><", 0);
-
-                isMoving = false;
-                isRunning = true;
-
-            }
+            StopRunning();
         }
-        else if (!isMoving)
+
+        if (!isMoving)
         {
             time += Time.deltaTime;
-
-            proxy.SetValue("BLENDSHAPE.PUZZLE", 1);
+            proxy.SetValue(FacialExpressions.Puzzle.ToString(), 1);
 
             if (time > 3.0f)
             {
-                proxy.SetValue("Sorrow", 0);
-                isMoving = true;
-                origin = transform.position;
-                destination_x = Random.Range(-2.0f, 2.0f);
-                destination = new Vector3(destination_x, transform.position.y, transform.position.z);
-                time = 0;
-                if (destination_x > origin_x)
-                {
-                    transform.Rotate(0, -90, 0);
-                }
-                else
-                {
-                    transform.Rotate(0, 90, 0);
-                }
-                animator.SetBool("isRunning", true);
-
-                runningCoroutine = RunningCroutine();
-
-                StartCoroutine(runningCoroutine);
+                StartRunning();
             }
-        }  
-	}
+        }
+    }
+
+    private void StartRunning()
+    {
+
+        proxy.SetValue(FacialExpressions.Srrow.ToString(), 0);
+        isMoving = true;
+        origin = transform.position;
+        destination_x = Random.Range(-2.0f, 2.0f);
+        destination = new Vector3(destination_x, transform.position.y, transform.position.z);
+        time = 0;
+        if (destination_x > origin_x)
+        {
+            transform.Rotate(0, -90, 0);
+        }
+        else
+        {
+            transform.Rotate(0, 90, 0);
+        }
+        animator.SetBool("isRunning", true);
+
+        Running();
+    }
+
+    public void StopRunning()
+    {
+        animator.SetBool("isRunning", false);
+        if (runningCoroutine != null) StopCoroutine(runningCoroutine);
+        origin_x = destination_x;
+        transform.LookAt(new Vector3(transform.position.x, transform.position.y, transform.position.z - 1));
+        proxy.SetValue(FacialExpressions.Embarrassed.ToString(), 0);
+
+        isMoving = false;
+        isArrivedDestination = false;
+    }
+
+    private void Running()
+    {
+        runningCoroutine = RunningCroutine();
+        StartCoroutine(runningCoroutine);
+    }
+
     IEnumerator RunningCroutine()
     {
         float movingParameter = 0;
@@ -100,14 +111,10 @@ public class PrincessMoving : MonoBehaviour {
             transform.position = Vector3.Lerp(origin, destination, movingParameter);
             yield return null;
             movingParameter += Time.deltaTime;
-            proxy.SetValue("><",1.0f);
+            proxy.SetValue(FacialExpressions.Embarrassed.ToString(), 1.0f);
         }
 
-        //Debug.Log("transform.position : " + this.transform.position);
-
-
-        isRunning = false;
+        isArrivedDestination = true;
 
     }
-
 }
