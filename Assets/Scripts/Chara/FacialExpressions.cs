@@ -5,8 +5,9 @@ using UnityEngine;
 public enum FacialExpressions
 {
     Embarrassed,
+    Fun,
     Joy,
-    Srrow,
+    Sorrow,
     Puzzle,
     VerySorrow,
 }

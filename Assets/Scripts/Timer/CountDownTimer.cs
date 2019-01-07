@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class CountDownTimer : MonoBehaviour {
 
-    //public delegate void TimerEventHandler(int time);
-    //public event TimerEventHandler OnTimeChanged;
-
     public Text leftText;
     public Text rightText;
 
@@ -15,14 +12,20 @@ public class CountDownTimer : MonoBehaviour {
 
     public static int time { get; set; }
 
+    //public delegate void TimerEventHandler(int time, Text counterText);
+    //public delegate void TimerEventHandler(int time);
+    //public event TimerEventHandler OnTimeChanged;
+
     void Start()
     {
+
         time = 35;
     }
 
 
     void Update()
     {
+        timerText = leftText;
         var controller = OVRInput.GetActiveController();
 
         if (controller == OVRInput.Controller.RTrackedRemote)
@@ -35,7 +38,6 @@ public class CountDownTimer : MonoBehaviour {
         }
     }
 
-    // Use this for initialization
     public void StartTimer () {
         StartCoroutine(TimerCoroutine());
     }
@@ -45,13 +47,9 @@ public class CountDownTimer : MonoBehaviour {
         while (time >= 0)
         {
             //OnTimeChanged(time);
-            Debug.Log(timerText);
             timerText.text = time.ToString();
             yield return new WaitForSeconds(1);
             time--;
         }
     }
-
-
-
 }

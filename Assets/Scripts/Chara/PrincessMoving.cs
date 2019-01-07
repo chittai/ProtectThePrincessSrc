@@ -20,13 +20,13 @@ public class PrincessMoving : MonoBehaviour
         set { isArrivedDestination = value; }
     }
 
-    private Vector3 origin;
-    private Vector3 destination;
-    private float time;
-    private Animator animator;
-    private VRMBlendShapeProxy proxy;
     private float origin_x;
     private float destination_x;
+
+    private float time;
+
+    private Animator animator;
+    private VRMBlendShapeProxy proxy;
 
     private IEnumerator runningCoroutine;
 
@@ -42,7 +42,6 @@ public class PrincessMoving : MonoBehaviour
 
     void Update()
     {
-
         if (isMoving && isArrivedDestination)
         {
             StopRunning();
@@ -60,15 +59,16 @@ public class PrincessMoving : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 次の目的地を計算し、その座標までキャラクターを走らせる処理
+    /// </summary>
     private void StartRunning()
     {
-
-        proxy.SetValue(FacialExpressions.Srrow.ToString(), 0);
+        proxy.SetValue(FacialExpressions.Sorrow.ToString(), 0);
         isMoving = true;
-        origin = transform.position;
-        destination_x = Random.Range(-2.0f, 2.0f);
-        destination = new Vector3(destination_x, transform.position.y, transform.position.z);
         time = 0;
+        
+        destination_x = Random.Range(-2.0f, 2.0f);
         if (destination_x > origin_x)
         {
             transform.Rotate(0, -90, 0);
@@ -77,25 +77,8 @@ public class PrincessMoving : MonoBehaviour
         {
             transform.Rotate(0, 90, 0);
         }
+
         animator.SetBool("isRunning", true);
-
-        Running();
-    }
-
-    public void StopRunning()
-    {
-        animator.SetBool("isRunning", false);
-        if (runningCoroutine != null) StopCoroutine(runningCoroutine);
-        origin_x = destination_x;
-        transform.LookAt(new Vector3(transform.position.x, transform.position.y, transform.position.z - 1));
-        proxy.SetValue(FacialExpressions.Embarrassed.ToString(), 0);
-
-        isMoving = false;
-        isArrivedDestination = false;
-    }
-
-    private void Running()
-    {
         runningCoroutine = RunningCroutine();
         StartCoroutine(runningCoroutine);
     }
@@ -106,15 +89,37 @@ public class PrincessMoving : MonoBehaviour
 
         movingParameter = Mathf.Clamp01(movingParameter);
 
+        var origin = transform.position;
+        var destination = new Vector3(destination_x, transform.position.y, transform.position.z);
+        proxy.SetValue(FacialExpressions.Embarrassed.ToString(), 1.0f);
+
         while (movingParameter <= 1)
         {
             transform.position = Vector3.Lerp(origin, destination, movingParameter);
             yield return null;
             movingParameter += Time.deltaTime;
-            proxy.SetValue(FacialExpressions.Embarrassed.ToString(), 1.0f);
         }
 
         isArrivedDestination = true;
 
+    }
+
+    /// <summary>
+    /// 走っているキャラクターを停止
+    /// </summary>
+    public void StopRunning()
+    {
+        animator.SetBool("isRunning", false);
+
+        if (runningCoroutine != null)
+            StopCoroutine(runningCoroutine);
+
+        origin_x = transform.position.x;
+
+        transform.LookAt(new Vector3(transform.position.x, transform.position.y, transform.position.z - 1));
+        proxy.SetValue(FacialExpressions.Embarrassed.ToString(), 0);
+
+        isMoving = false;
+        isArrivedDestination = false;
     }
 }

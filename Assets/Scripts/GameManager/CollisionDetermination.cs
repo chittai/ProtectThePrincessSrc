@@ -22,7 +22,7 @@ public class CollisionDetermination : MonoBehaviour {
             princessMoving.movingStatus = true;
             princessMoving.runningStatus = true;
             var proxy = GetComponent<VRMBlendShapeProxy>();
-            proxy.SetValue(FacialExpressions.Srrow.ToString(), 1);
+            proxy.SetValue(FacialExpressions.Sorrow.ToString(), 1);
 
             GetComponent<PlaySoundEffect>().Sound();
 

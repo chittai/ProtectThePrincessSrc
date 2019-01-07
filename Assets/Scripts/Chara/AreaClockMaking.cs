@@ -5,18 +5,17 @@ using UnityEngine;
 public class AreaClockMaking : MonoBehaviour {
 
     public GameObject areaClock;
-    
-	// Use this for initialization
-	void Start () {
-		
-	}
+    private GuageDecreasing _guageDecreasing;
+
+    void Start () {
+        _guageDecreasing = GetComponent<GuageDecreasing>();
+    }
 	
-	// Update is called once per frame
 	void Update () {
-        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger) && GetComponent<GuageDecreasing>().restGuage >= 0)
+        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger) && _guageDecreasing.restGuage >= 0)
         {
             areaClock.SetActive(true);
-            GetComponent<GuageDecreasing>().Decreasing();
+            _guageDecreasing.Decreasing();
         }
         else
         {
