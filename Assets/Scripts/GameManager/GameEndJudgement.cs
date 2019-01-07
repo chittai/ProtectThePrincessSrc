@@ -6,12 +6,10 @@ public class GameEndJudgement : MonoBehaviour {
 
     private bool isOver;
 
-	// Use this for initialization
 	void Start () {
         isOver = false;
     }
-	
-	// Update is called once per frame
+
 	void Update () {
 
         if (HpDecreasing.hp < 0 && !isOver)

@@ -6,6 +6,7 @@ using VRM;
 public class PrincessMoving : MonoBehaviour
 {
 
+    /// <value> 走っているかどうか </value>
     private bool isMoving;
     public bool movingStatus
     {
@@ -13,6 +14,7 @@ public class PrincessMoving : MonoBehaviour
         set { isMoving = value; }
     }
 
+    /// <value> 目的地に到着したかどうか。ダメージを受けて停止しても目的地についたと判断する </value>
     private bool isArrivedDestination;
     public bool runningStatus
     {

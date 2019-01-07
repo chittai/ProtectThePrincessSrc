@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using VRM;
 
+/// <summary>
+/// リザルト画面にいるキャラクターの表情を変更する
+/// </summary>
 public class BlendShapeChange : MonoBehaviour {
 
     private VRMBlendShapeProxy proxy;

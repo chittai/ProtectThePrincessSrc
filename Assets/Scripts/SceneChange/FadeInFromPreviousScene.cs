@@ -16,6 +16,9 @@ public class FadeInFromPreviousScene : MonoBehaviour
         this.FadeIn();
     }
 
+    /// <summary>
+    /// シーンチェンジ時にFadeInする処理
+    /// </summary>
     public void FadeIn()
     {
         forFadeCanvas.SetActive(true);

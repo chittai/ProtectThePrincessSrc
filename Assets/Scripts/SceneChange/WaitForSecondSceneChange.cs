@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class WaitForSecondSceneChange : MonoBehaviour {
 
+    /// <summary>
+    /// 指定した秒数後にシーンチェンジする
+    /// </summary>
+    /// <param name="sceneName">遷移先のシーン名</param>
     public void SceneChange(string sceneName)
     {
         var second = 4;
@@ -13,10 +17,8 @@ public class WaitForSecondSceneChange : MonoBehaviour {
 
     IEnumerator WaitForSecondCoroutine(int second, string sceneName)
     {
-        Debug.Log("second : " + second);
         for (int i = 0; i < second; i++)
         {
-
             yield return new WaitForSeconds(1);
         }
         SceneManager.LoadScene(sceneName);

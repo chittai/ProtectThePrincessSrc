@@ -13,10 +13,11 @@ public class StartTimeCount : MonoBehaviour {
         StartCoroutine(PlayStarCountCoroutine());
 	}
 	
-	void Update () {
-		
-	}
-
+    /// <summary>
+    /// シーンチェンジ後にゲーム開始までのカウントダウンを行う。
+    /// カウントダウン後には"START"を表示する。
+    /// </summary>
+    /// <returns></returns>
     IEnumerator PlayStarCountCoroutine()
     {
         var time = 3;

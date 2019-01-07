@@ -7,8 +7,7 @@ public class HpDecreasing : MonoBehaviour {
     public static int hp { get; set; }
 
     public GameObject particle;
-
-	// Use this for initialization
+    
 	void Start () {
         hp = 2;
 	}
@@ -19,7 +18,6 @@ public class HpDecreasing : MonoBehaviour {
         Instantiate(particle, heart.transform.position, particle.transform.rotation);
         heart.SetActive(false);
         hp--;
-        // Destroy(particleInstance, 2);
     }
 
 }

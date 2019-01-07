@@ -7,12 +7,10 @@ public class ChangeEmissionColor : MonoBehaviour {
 
     Timeline time;
 
-	// Use this for initialization
 	void Start () {
         time = GetComponent<Timeline>();
 	}
 	
-	// Update is called once per frame
 	void Update () {
 
         if (time.timeScale < 1)

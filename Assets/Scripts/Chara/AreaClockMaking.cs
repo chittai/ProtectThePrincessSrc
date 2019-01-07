@@ -12,6 +12,8 @@ public class AreaClockMaking : MonoBehaviour {
     }
 	
 	void Update () {
+
+        // ゲージの残量がある状態でトリガーを引くことでAreaClockが使用可能
         if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger) && _guageDecreasing.restGuage >= 0)
         {
             areaClock.SetActive(true);

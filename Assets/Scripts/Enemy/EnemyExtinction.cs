@@ -18,6 +18,9 @@ public class EnemyExtinction : MonoBehaviour {
         */
     }
 
+    /// <summary>
+    /// 配置している敵のオブジェクトをDestroyする。消える演出として同時にパーティクルの生成をする
+    /// </summary>
     public void Extinction()
     {
         foreach (Transform enemy in enemyGroup.transform)

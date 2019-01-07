@@ -11,6 +11,10 @@ public class FadeOutSceneChange : MonoBehaviour
     private float alphaValue;
     private float fadeSpeed;
 
+    /// <summary>
+    /// FadeOut後にシーンチェンジ
+    /// </summary>
+    /// <param name="sceneName">遷移先のシーンの名前</param>
     public void SceneChange(string sceneName)
     {
         forFadeCanvas.SetActive(true);
@@ -19,7 +23,6 @@ public class FadeOutSceneChange : MonoBehaviour
 
         StartCoroutine(FadeOutCoroutine(forFadePanel, sceneName));
     }
-
 
     IEnumerator FadeOutCoroutine(Image fadePanel,string sceneName)
     {
@@ -33,8 +36,6 @@ public class FadeOutSceneChange : MonoBehaviour
 
             yield return null;
         }
-
         SceneManager.LoadScene(sceneName);
-
     }
 }

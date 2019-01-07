@@ -7,26 +7,23 @@ public class CountDownTimer : MonoBehaviour {
 
     public Text leftText;
     public Text rightText;
-
     private Text timerText;
 
     public static int time { get; set; }
 
-    //public delegate void TimerEventHandler(int time, Text counterText);
-    //public delegate void TimerEventHandler(int time);
-    //public event TimerEventHandler OnTimeChanged;
+    private OVRInput.Controller controller;
 
     void Start()
     {
-
+        controller = OVRInput.GetActiveController();
         time = 35;
     }
 
-
     void Update()
     {
-        timerText = leftText;
-        var controller = OVRInput.GetActiveController();
+        // アクティブなコントローラを判定し、そのコントローラの子オブジェクトとして
+        // 存在しているTextに時間を表示する
+        controller = OVRInput.GetActiveController();
 
         if (controller == OVRInput.Controller.RTrackedRemote)
         {
@@ -38,6 +35,9 @@ public class CountDownTimer : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// プレイ時間のタイマー
+    /// </summary>
     public void StartTimer () {
         StartCoroutine(TimerCoroutine());
     }
@@ -46,7 +46,7 @@ public class CountDownTimer : MonoBehaviour {
     {
         while (time >= 0)
         {
-            //OnTimeChanged(time);
+            Debug.Log(timerText.text);
             timerText.text = time.ToString();
             yield return new WaitForSeconds(1);
             time--;

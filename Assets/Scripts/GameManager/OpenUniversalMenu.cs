@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class OpenUniversalMenu : MonoBehaviour {
 
-	// Update is called once per frame
 	void Update () {
+
+        // "←"ボタンを押した時にメニュー画面を開く処理
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             OVRManager.PlatformUIConfirmQuit();

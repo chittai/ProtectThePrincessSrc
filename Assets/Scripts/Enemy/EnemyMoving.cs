@@ -9,17 +9,19 @@ public class EnemyMoving : MonoBehaviour {
 
     private bool isMoving;
 
-    // Use this for initialization
     void Start () {
         StartCoroutine("MovingNextPositionCoroutine");	
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
         if (!isMoving)
             StartCoroutine("MovingNextPositionCoroutine");
 	}
 
+    /// <summary>
+    /// 敵が次の位置移動する
+    /// </summary>
+    /// <returns></returns>
     IEnumerator MovingNextPositionCoroutine()
     {
         isMoving = true;

@@ -21,10 +21,12 @@ public class ToPlayScene : MonoBehaviour {
         }
 
         // for Debug
+        /*
         if (Input.GetKeyDown(KeyCode.Space))
         {
             playSoundEffect.Sound();
             fadeOutSceneChange.SceneChange("Play_Master");
         }
+        */
     }
 }

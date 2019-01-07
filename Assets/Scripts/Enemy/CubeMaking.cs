@@ -15,6 +15,10 @@ public class CubeMaking : MonoBehaviour {
         StartCoroutine("MakeCube");
     }
 
+    /// <summary>
+    /// 敵からくる攻撃のCubeを作成する。狙う座標は範囲指定でランダムで決定
+    /// </summary>
+    /// <returns></returns>
     IEnumerator MakeCube()
     {   
         for (int i = 0; i < 1000; i++)

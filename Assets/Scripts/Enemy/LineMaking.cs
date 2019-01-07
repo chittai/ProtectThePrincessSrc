@@ -8,6 +8,8 @@ public class LineMaking : MonoBehaviour {
     public GameObject endPoint;
 
     void Start () {
+
+        //敵の攻撃の始点(発生位置)と終点(目標座標)で線を結ぶ
         LineRenderer linerenderer = GetComponent<LineRenderer>();
 
         linerenderer.startWidth = 0.01f;
@@ -17,8 +19,6 @@ public class LineMaking : MonoBehaviour {
 
         linerenderer.startColor = Color.red;
         linerenderer.endColor = Color.red; 
-
-        //linerenderer.SetColors(Color.blue, Color.red);
 
         linerenderer.SetPosition(0, startPoint.transform.position);
         linerenderer.SetPosition(1, endPoint.transform.position);
