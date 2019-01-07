@@ -7,28 +7,18 @@ public class BlendShapeChange : MonoBehaviour {
 
     private VRMBlendShapeProxy proxy;
     public bool clearFlag;
-    public bool selectSceneFlag;
 
-
-    // Use this for initialization
-    void Update () {
+    private void Start()
+    {
+        proxy = GetComponent<VRMBlendShapeProxy>();
 
         if (clearFlag)
         {
-            proxy = GetComponent<VRMBlendShapeProxy>();
-            proxy.SetValue(BlendShapePreset.Joy, 1.0f);
-
-            Debug.Log(proxy);
-
+            proxy.SetValue(FacialExpressions.Joy.ToString(), 1.0f);
         }
-        else if (!clearFlag && !selectSceneFlag)
+        else if (!clearFlag)
         {
-            proxy = GetComponent<VRMBlendShapeProxy>();
-            proxy.SetValue("BLENDSHAPECLIP.VERYSORROW", 1.0f);
-        }
-        else
-        {
-            
+            proxy.SetValue(FacialExpressions.VerySorrow.ToString(), 1.0f);
         }
     }
 }
