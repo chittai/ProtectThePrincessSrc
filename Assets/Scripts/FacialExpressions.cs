@@ -4,8 +4,10 @@ using UnityEngine;
 
 public enum FacialExpressions
 {
-    Puzzle,
-    Srrow,
     Embarrassed,
+    Joy,
+    Srrow,
+    Puzzle,
+    VerySorrow,
 }
 

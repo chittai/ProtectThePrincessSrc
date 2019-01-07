@@ -17,7 +17,7 @@ public class GameClear : MonoBehaviour {
         gameClearPanel.GetComponent<Image>().color = new Color(255, 255, 255, 0.4f);
 
         //var alicia = GameObject.Find("Model/AliciaSolid");
-        var alicia = GameObject.Find("Model/VRoid_test");
+        var alicia = GameObject.Find("Model/AliciaSolid");
 
         alicia.GetComponent<PrincessMoving>().enabled = false;
         alicia.transform.LookAt(new Vector3(alicia.transform.position.x, alicia.transform.position.y, alicia.transform.position.z - 1));
