@@ -8,16 +8,12 @@ public class CubeMaking : MonoBehaviour {
     public GameObject muzzle;
     private float cubeLife;
 
-	// Use this for initialization
+    private PlaySoundEffect playSoundEffect;
+
 	void Start () {
-        
+        playSoundEffect = GetComponent<PlaySoundEffect>();
         StartCoroutine("MakeCube");
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     IEnumerator MakeCube()
     {   
@@ -29,12 +25,10 @@ public class CubeMaking : MonoBehaviour {
             var z = 3.5f;
 
             cubeLife = 2.0f;
-            GetComponent<PlaySoundEffect>().Sound();
+            playSoundEffect.Sound();
             GameObject cubeINstance = Instantiate(cube, new Vector3(muzzle.transform.position.x, muzzle.transform.position.y, muzzle.transform.position.z), muzzle.transform.rotation);
             cubeINstance.transform.LookAt(new Vector3(random_x, random_y, z));
             Destroy(cubeINstance, cubeLife);
-
         }
     }
-
 }

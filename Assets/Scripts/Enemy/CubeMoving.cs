@@ -8,13 +8,14 @@ public class CubeMoving : MonoBehaviour {
 
     [SerializeField] private float speed = 13;
 
-	// Use this for initialization
+    private Timeline timeLine;
+    
 	void Start () {
+        timeLine = GetComponent<Timeline>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        this.transform.Translate(new Vector3(0,0,1) * GetComponent<Timeline>().deltaTime * speed);
-
+        this.transform.Translate(new Vector3(0,0,1) * timeLine.deltaTime * speed);
     }
 }

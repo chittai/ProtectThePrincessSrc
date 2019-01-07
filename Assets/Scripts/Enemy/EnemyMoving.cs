@@ -16,7 +16,8 @@ public class EnemyMoving : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!isMoving) StartCoroutine("MovingNextPositionCoroutine");
+        if (!isMoving)
+            StartCoroutine("MovingNextPositionCoroutine");
 	}
 
     IEnumerator MovingNextPositionCoroutine()
