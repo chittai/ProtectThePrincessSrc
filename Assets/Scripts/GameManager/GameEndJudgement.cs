@@ -16,12 +16,12 @@ public class GameEndJudgement : MonoBehaviour {
 
         if (HpDecreasing.hp < 0 && !isOver)
         {
-            GetComponent<GameOver>().GameOverDetail();
+            GetComponent<GameOver>().GameEndDetail();
             isOver = true;
         }
         else if(CountDownTimer.time <= 0 && HpDecreasing.hp >= 0 && !isOver)
         {
-            GetComponent<GameClear>().GameClearDetail();
+            GetComponent<GameClear>().GameEndDetail();
             isOver = true;
         }
 	}
