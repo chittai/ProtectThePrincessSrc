@@ -20,9 +20,9 @@ public class CollisionDetermination : MonoBehaviour {
             transform.LookAt(new Vector3(transform.position.x, transform.position.y, transform.position.z - 1 ));
             var princessMoving = GetComponent<PrincessMoving>();
             princessMoving.movingStatus = true;
-            princessMoving.runningStatus = false;
+            princessMoving.runningStatus = true;
             var proxy = GetComponent<VRMBlendShapeProxy>();
-            proxy.SetValue("Sorrow", 1);
+            proxy.SetValue(FacialExpressions.Srrow.ToString(), 1);
 
             GetComponent<PlaySoundEffect>().Sound();
 
