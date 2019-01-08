@@ -1,11 +1,21 @@
 App/
+Assets/AssetStoreTools/
+Assets/Material/
+Assets/Music/
 Assets/Oculus/
-Assets/AssetStoreTools*
+Assets/OVRInputSelection/
 Assets/Plugins/
+Assets/Prefabs/
+Assets/Resources/
+Assets/Scene/
+Assets/SimpleMeshCutter/
+Assets/Sounds/
+Assets/Standard Assets/
+Assets/StreamingAssets/
+Assets/Unity Technologies/
+Assets/UnityChan/
+Assets/Universal Sound FX/
 Assets/VRM/
-
-
-
 
 [Ll]ibrary/
 [Tt]emp/
@@ -43,3 +53,41 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+title_after.data
+title2.data
+title.data
+select2.data
+title_before.data
+select.data
+play_result2.data
+play_result.data
+perfomance.log
+Recordings/image.gif
+Assets/VRM.meta
+Assets/Universal Sound FX.meta
+Assets/Standard Assets.meta
+Assets/Sounds.meta
+Assets/Plugins.meta
+Assets/Oculus.meta
+Assets/New Terrain.asset.meta
+Assets/New Terrain.asset
+Assets/Music.meta
+Assets/UnityChan.meta
+Assets/Scene.meta
+Assets/Resources.meta
+Assets/OVRInputSelection.meta
+user.keystore
+Assets/Material.meta
+Assets/AssetStoreTools.meta
+Assets/Unity Technologies.meta
+Assets/StreamingAssets.meta
+Assets/Prefabs.meta
+Assets/SimpleMeshCutter.meta
+ProjectSettings/UnityConnectSettings.asset
+ProjectSettings/ProjectSettings.asset
+ProjectSettings/TagManager.asset
+ProjectSettings/GraphicsSettings.asset
+ProjectSettings/QualitySettings.asset
+ProjectSettings/EditorBuildSettings.asset
+Assets/Scripts/Timer/TimerView.cs
+Assets/Scripts/Timer/TimerView.cs.meta
