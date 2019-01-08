@@ -2,52 +2,58 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMoving : MonoBehaviour {
-
-    private Vector3 originPosition;
-    private Vector3 destinationPosition;
-
-    private bool isMoving;
-
-    void Start () {
-        StartCoroutine("MovingNextPositionCoroutine");	
-	}
-
-	void Update () {
-        if (!isMoving)
-            StartCoroutine("MovingNextPositionCoroutine");
-	}
-
-    /// <summary>
-    /// 敵が次の位置移動する
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator MovingNextPositionCoroutine()
+namespace VRGame
+{
+    public class EnemyMoving : MonoBehaviour
     {
-        isMoving = true;
 
-        float positionX;
-        float positionY;
+        private Vector3 originPosition;
+        private Vector3 destinationPosition;
 
-        float movingParameter = 0;
+        private bool isMoving;
 
-        positionX = Random.Range(-2.0f,2.0f);
-        positionY = Random.Range(0, 3.0f);
-
-        originPosition = transform.position;
-        destinationPosition = new Vector3(positionX, positionY,transform.position.z);
-
-        while (movingParameter <= 1)
+        void Start()
         {
-            transform.position = Vector3.Lerp(originPosition, destinationPosition, movingParameter);
-            yield return null;
-            movingParameter += Time.deltaTime;
+            StartCoroutine("MovingNextPositionCoroutine");
         }
 
-        yield return new WaitForSeconds(1);
+        void Update()
+        {
+            if (!isMoving)
+                StartCoroutine("MovingNextPositionCoroutine");
+        }
 
-        isMoving = false;
+        /// <summary>
+        /// 敵が次の位置移動する
+        /// </summary>
+        /// <returns></returns>
+        IEnumerator MovingNextPositionCoroutine()
+        {
+            isMoving = true;
+
+            float positionX;
+            float positionY;
+
+            float movingParameter = 0;
+
+            positionX = Random.Range(-2.0f, 2.0f);
+            positionY = Random.Range(0, 3.0f);
+
+            originPosition = transform.position;
+            destinationPosition = new Vector3(positionX, positionY, transform.position.z);
+
+            while (movingParameter <= 1)
+            {
+                transform.position = Vector3.Lerp(originPosition, destinationPosition, movingParameter);
+                yield return null;
+                movingParameter += Time.deltaTime;
+            }
+
+            yield return new WaitForSeconds(1);
+
+            isMoving = false;
+
+        }
 
     }
-
 }

@@ -4,38 +4,41 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class FadeOutSceneChange : MonoBehaviour
+namespace VRGame
 {
-    public GameObject forFadeCanvas;
-
-    private float alphaValue;
-    private float fadeSpeed;
-
-    /// <summary>
-    /// FadeOut後にシーンチェンジ
-    /// </summary>
-    /// <param name="sceneName">遷移先のシーンの名前</param>
-    public void SceneChange(string sceneName)
+    public class FadeOutSceneChange : MonoBehaviour
     {
-        forFadeCanvas.SetActive(true);
-        Image forFadePanel = forFadeCanvas.GetComponent<Image>();
-        forFadePanel.color = new Color(0, 0, 0, 0);
+        public GameObject forFadeCanvas;
 
-        StartCoroutine(FadeOutCoroutine(forFadePanel, sceneName));
-    }
+        private float alphaValue;
+        private float fadeSpeed;
 
-    IEnumerator FadeOutCoroutine(Image fadePanel,string sceneName)
-    {
-        alphaValue = 0f;
-        fadeSpeed = 0.05f;
-        
-        while (alphaValue < 1)
+        /// <summary>
+        /// FadeOut後にシーンチェンジ
+        /// </summary>
+        /// <param name="sceneName">遷移先のシーンの名前</param>
+        public void SceneChange(string sceneName)
         {
-            alphaValue += fadeSpeed;
-            fadePanel.color = new Color(0, 0, 0, alphaValue);
+            forFadeCanvas.SetActive(true);
+            Image forFadePanel = forFadeCanvas.GetComponent<Image>();
+            forFadePanel.color = new Color(0, 0, 0, 0);
 
-            yield return null;
+            StartCoroutine(FadeOutCoroutine(forFadePanel, sceneName));
         }
-        SceneManager.LoadScene(sceneName);
+
+        IEnumerator FadeOutCoroutine(Image fadePanel, string sceneName)
+        {
+            alphaValue = 0f;
+            fadeSpeed = 0.05f;
+
+            while (alphaValue < 1)
+            {
+                alphaValue += fadeSpeed;
+                fadePanel.color = new Color(0, 0, 0, alphaValue);
+
+                yield return null;
+            }
+            SceneManager.LoadScene(sceneName);
+        }
     }
 }

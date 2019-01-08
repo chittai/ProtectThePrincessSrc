@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class GameEndBase : MonoBehaviour {
-
-    public abstract void GameEndDetail();
-
-    protected GameObject alicia
+namespace VRGame
+{
+    public abstract class GameEndBase : MonoBehaviour
     {
-        get
+        public abstract void GameEndDetail();
+
+        protected GameObject alicia
         {
-            return GameObject.Find("Model/AliciaSolid");
+            get
+            {
+                return GameObject.Find("Model/AliciaSolid");
+            }
         }
     }
-
 }

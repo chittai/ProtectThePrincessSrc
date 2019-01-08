@@ -5,26 +5,28 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using VRM;
 
-public class GameOver : GameEndBase
+namespace VRGame
 {
-
-    public GameObject gameOverPanel;
-    public GameObject gameOverText;
-
-    /// <summary>
-    /// ゲームオーバー時の処理。キャラの向きを変え、表情を変える
-    /// </summary>
-    public override void GameEndDetail()
+    public class GameOver : GameEndBase
     {
-        gameOverPanel.SetActive(true);
-        gameOverText.SetActive(true);
-        gameOverPanel.GetComponent<Image>().color = new Color(1,0,0,0.4f);
+        public GameObject gameOverPanel;
+        public GameObject gameOverText;
 
-        alicia.GetComponent<PrincessMoving>().enabled = false;
-        alicia.transform.LookAt(new Vector3(alicia.transform.position.x, alicia.transform.position.y, alicia.transform.position.z - 1));
-        alicia.GetComponent<VRMBlendShapeProxy>().SetValue(FacialExpressions.Sorrow.ToString(),1);
+        /// <summary>
+        /// ゲームオーバー時の処理。キャラの向きを変え、表情を変える
+        /// </summary>
+        public override void GameEndDetail()
+        {
+            gameOverPanel.SetActive(true);
+            gameOverText.SetActive(true);
+            gameOverPanel.GetComponent<Image>().color = new Color(1, 0, 0, 0.4f);
 
-        GetComponent<WaitForSecondSceneChange>().SceneChange("Result_GameOver_Master");
+            alicia.GetComponent<PrincessMoving>().enabled = false;
+            alicia.transform.LookAt(new Vector3(alicia.transform.position.x, alicia.transform.position.y, alicia.transform.position.z - 1));
+            alicia.GetComponent<VRMBlendShapeProxy>().SetValue(FacialExpressions.Sorrow.ToString(), 1);
 
+            GetComponent<WaitForSecondSceneChange>().SceneChange("Result_GameOver_Master");
+
+        }
     }
 }

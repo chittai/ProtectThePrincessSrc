@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Profiling;
 
-public class DisplayProfiler : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-        Profiler.AddFramesFromFile("perfomance.log");
-	}
+namespace VRGame
+{
+    public class DisplayProfiler : MonoBehaviour
+    {
+        void Start()
+        {
+            Profiler.AddFramesFromFile("perfomance.log");
+        }
+    }
 }

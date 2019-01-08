@@ -3,24 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class WaitForSecondSceneChange : MonoBehaviour {
-
-    /// <summary>
-    /// 指定した秒数後にシーンチェンジする
-    /// </summary>
-    /// <param name="sceneName">遷移先のシーン名</param>
-    public void SceneChange(string sceneName)
+namespace VRGame
+{
+    public class WaitForSecondSceneChange : MonoBehaviour
     {
-        var second = 4;
-        StartCoroutine(WaitForSecondCoroutine(second, sceneName));
-    }
-
-    IEnumerator WaitForSecondCoroutine(int second, string sceneName)
-    {
-        for (int i = 0; i < second; i++)
+        /// <summary>
+        /// 指定した秒数後にシーンチェンジする
+        /// </summary>
+        /// <param name="sceneName">遷移先のシーン名</param>
+        public void SceneChange(string sceneName)
         {
-            yield return new WaitForSeconds(1);
+            var second = 4;
+            StartCoroutine(WaitForSecondCoroutine(second, sceneName));
         }
-        SceneManager.LoadScene(sceneName);
+
+        IEnumerator WaitForSecondCoroutine(int second, string sceneName)
+        {
+            for (int i = 0; i < second; i++)
+            {
+                yield return new WaitForSeconds(1);
+            }
+            SceneManager.LoadScene(sceneName);
+        }
     }
 }

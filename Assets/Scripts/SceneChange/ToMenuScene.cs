@@ -2,27 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ToMenuScene : MonoBehaviour
+namespace VRGame
 {
-    private FadeOutSceneChange fadeOutSceneChange;
-
-    void Start()
+    public class ToMenuScene : MonoBehaviour
     {
-        fadeOutSceneChange = GetComponent<FadeOutSceneChange>();
-    }
+        private FadeOutSceneChange fadeOutSceneChange;
 
-    void Update()
-    {
-        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
+        void Start()
         {
-            fadeOutSceneChange.SceneChange("Select_Master");
+            fadeOutSceneChange = GetComponent<FadeOutSceneChange>();
         }
 
-        // for Debug
-        if (Input.GetKeyDown(KeyCode.Space))
+        void Update()
         {
-            fadeOutSceneChange.SceneChange("Select_Master");
+            if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
+            {
+                fadeOutSceneChange.SceneChange("Select_Master");
+            }
+
+            // for Debug
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                fadeOutSceneChange.SceneChange("Select_Master");
+            }
+
         }
-        
     }
 }

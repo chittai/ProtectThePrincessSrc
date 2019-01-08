@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum FacialExpressions
+namespace VRGame
 {
-    Embarrassed,
-    Fun,
-    Joy,
-    Sorrow,
-    Puzzle,
-    VerySorrow,
+    public enum FacialExpressions
+    {
+        Embarrassed,
+        Fun,
+        Joy,
+        Sorrow,
+        Puzzle,
+        VerySorrow,
+    }
 }
-

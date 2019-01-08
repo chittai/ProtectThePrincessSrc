@@ -2,32 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyExtinction : MonoBehaviour {
-
-    public GameObject enemyGroup;
-    public GameObject extinctionParticle;
-
-    void Update()
+namespace VRGame
+{
+    public class EnemyExtinction : MonoBehaviour
     {
-        // for Debug
-        /*
-        if (Input.GetKeyDown(KeyCode.Space))
+
+        public GameObject enemyGroup;
+        public GameObject extinctionParticle;
+
+        void Update()
         {
-            Extinction();
+            // for Debug
+            /*
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Extinction();
+            }
+            */
         }
-        */
-    }
 
-    /// <summary>
-    /// 配置している敵のオブジェクトをDestroyする。消える演出として同時にパーティクルの生成をする
-    /// </summary>
-    public void Extinction()
-    {
-        foreach (Transform enemy in enemyGroup.transform)
+        /// <summary>
+        /// 配置している敵のオブジェクトをDestroyする。消える演出として同時にパーティクルの生成をする
+        /// </summary>
+        public void Extinction()
         {
-            Destroy(enemy.gameObject);
-            Instantiate(extinctionParticle, enemy.transform.position, enemy.transform.rotation);
-        } 
+            foreach (Transform enemy in enemyGroup.transform)
+            {
+                Destroy(enemy.gameObject);
+                Instantiate(extinctionParticle, enemy.transform.position, enemy.transform.rotation);
+            }
+        }
     }
-
 }
