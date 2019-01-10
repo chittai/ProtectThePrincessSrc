@@ -1,2 +1,2 @@
-# ProtectthePrincessSrc
+# ProtectThePrincessSrc
 作成したVRゲームのソースコード
