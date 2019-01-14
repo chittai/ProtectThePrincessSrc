@@ -49,10 +49,10 @@ namespace VRGame
         IEnumerator TimerCoroutine()
         {
             while (time >= 0)
-            {
-                Debug.Log(timerText.text);
+            { 
                 timerText.text = time.ToString();
                 yield return new WaitForSeconds(1);
+                Debug.Log(time);
                 time--;
             }
         }

@@ -12,7 +12,7 @@ namespace VRGame
         {
             get
             {
-                return GameObject.Find("Model/AliciaSolid");
+                return GameObject.Find("Model/" + CharacterSelectComponents.SelectedCharacter);
             }
         }
     }

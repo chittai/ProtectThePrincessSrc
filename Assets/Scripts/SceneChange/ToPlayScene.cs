@@ -18,11 +18,13 @@ namespace VRGame
         void Update()
         {
 
+            /*
             if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
             {
                 playSoundEffect.Sound();
                 fadeOutSceneChange.SceneChange("Play_Master");
             }
+            */
 
             // for Debug
             /*
