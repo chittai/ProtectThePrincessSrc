@@ -8,6 +8,7 @@ namespace VRGame
     {
         Embarrassed,
         Fun,
+        VeryFun,
         Joy,
         Sorrow,
         Puzzle,

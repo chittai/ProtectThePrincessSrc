@@ -23,7 +23,7 @@ namespace VRGame
 
             alicia.GetComponent<PrincessMoving>().enabled = false;
             alicia.transform.LookAt(new Vector3(alicia.transform.position.x, alicia.transform.position.y, alicia.transform.position.z - 1));
-            alicia.GetComponent<VRMBlendShapeProxy>().SetValue(FacialExpressions.Fun.ToString(), 1);
+            alicia.GetComponent<VRMBlendShapeProxy>().SetValue(FacialExpressions.VeryFun.ToString(), 1);
 
             GetComponent<EnemyExtinction>().Extinction();
             GetComponent<WaitForSecondSceneChange>().SceneChange("Result_GameClear_Master");

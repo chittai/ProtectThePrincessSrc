@@ -17,7 +17,10 @@ namespace VRGame
         private void Start()
         {
             proxy = GetComponent<VRMBlendShapeProxy>();
+        }
 
+        private void Update()
+        {
             if (clearFlag)
             {
                 proxy.SetValue(FacialExpressions.Joy.ToString(), 1.0f);
@@ -27,5 +30,6 @@ namespace VRGame
                 proxy.SetValue(FacialExpressions.VerySorrow.ToString(), 1.0f);
             }
         }
+
     }
 }
