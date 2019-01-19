@@ -10,8 +10,11 @@ namespace VRGame
     {
         public GameObject forFadeCanvas;
 
-        private float alphaValue;
-        private float fadeSpeed;
+        [SerializeField]
+        private float _alphaValue = 0f;
+
+        [SerializeField]
+        private float _fadeSpeed = 0.05f;
 
         /// <summary>
         /// FadeOut後にシーンチェンジ
@@ -28,13 +31,10 @@ namespace VRGame
 
         IEnumerator FadeOutCoroutine(Image fadePanel, string sceneName)
         {
-            alphaValue = 0f;
-            fadeSpeed = 0.05f;
-
-            while (alphaValue < 1)
+            while (_alphaValue < 1)
             {
-                alphaValue += fadeSpeed;
-                fadePanel.color = new Color(0, 0, 0, alphaValue);
+                _alphaValue += _fadeSpeed;
+                fadePanel.color = new Color(0, 0, 0, _alphaValue);
 
                 yield return null;
             }

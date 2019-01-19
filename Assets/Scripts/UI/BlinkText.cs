@@ -9,12 +9,12 @@ namespace VRGame
     {
 
         public Text text;
-        private float blinkTime;
+        private float _blinkTime;
 
         // Use this for initialization
         void Start()
         {
-            blinkTime = Mathf.Clamp01(blinkTime);
+            _blinkTime = Mathf.Clamp01(_blinkTime);
         }
 
         // Update is called once per frame

@@ -8,8 +8,12 @@ namespace VRGame
     public class FadeInFromPreviousScene : MonoBehaviour
     {
         public GameObject forFadeCanvas;
-        private float fadeSpeed;
-        private float alpha;
+
+        [SerializeField]
+        private float _fadeSpeed = 0.05f;
+
+        [SerializeField]
+        private float _alphaValue = 1.0f;
 
         private void Awake()
         {
@@ -30,13 +34,10 @@ namespace VRGame
 
         IEnumerator FadeInCoroutine(Image panel)
         {
-            alpha = 1.0f;
-            fadeSpeed = 0.05f;
-
-            while (0 <= alpha)
+            while (0 <= _alphaValue)
             {
-                alpha -= fadeSpeed;
-                panel.color = new Color(0, 0, 0, alpha);
+                _alphaValue -= _fadeSpeed;
+                panel.color = new Color(0, 0, 0, _alphaValue);
 
                 yield return null;
             }

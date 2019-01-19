@@ -11,23 +11,23 @@ namespace VRGame
     public class BlendShapeChange : MonoBehaviour
     {
 
-        private VRMBlendShapeProxy proxy;
+        private VRMBlendShapeProxy _blendShapeProxy;
         public bool clearFlag;
 
         private void Start()
         {
-            proxy = GetComponent<VRMBlendShapeProxy>();
+            _blendShapeProxy = GetComponent<VRMBlendShapeProxy>();
         }
 
         private void Update()
         {
             if (clearFlag)
             {
-                proxy.SetValue(FacialExpressions.Joy.ToString(), 1.0f);
+                _blendShapeProxy.SetValue(FacialExpressions.Joy.ToString(), 1.0f);
             }
             else if (!clearFlag)
             {
-                proxy.SetValue(FacialExpressions.VerySorrow.ToString(), 1.0f);
+                _blendShapeProxy.SetValue(FacialExpressions.VerySorrow.ToString(), 1.0f);
             }
         }
 

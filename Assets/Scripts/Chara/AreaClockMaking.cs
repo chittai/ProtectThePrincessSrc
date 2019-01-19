@@ -43,7 +43,6 @@ namespace VRGame
                 areaClock.SetActive(false);
             }
             */
-
         }
     }
 }

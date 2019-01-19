@@ -10,48 +10,45 @@ namespace VRGame
         public GameObject rightGuage;
         public GameObject leftGuage;
         private GameObject _guage;
+        
+        private float _guageMax;
+        private float _width;
 
-        private float guageMax;
-        private float width;
+        private float _guageNow;
+        public float restGuage { get { return _guageNow; } set { _guageNow = value; } }
 
-        private float guageNow;
-        public float restGuage { get { return guageNow; } set { guageNow = value; } }
-
-        private OVRInput.Controller preGuage;
-
-        private OVRInput.Controller controller;
+        private OVRInput.Controller _preGuage;
+        private OVRInput.Controller _controller;
 
         void Start()
         {
-            guageMax = Mathf.Clamp(guageNow, 0, guageMax);
-            guageMax = 5;
-            guageNow = guageMax;
-            width = 1150;
+            _guageMax = Mathf.Clamp(_guageNow, 0, _guageMax);
+            _guageMax = 5;
+            _guageNow = _guageMax;
+            _width = 1150;
         }
 
         void Update()
         {
-            controller = OVRInput.GetActiveController();
+            _controller = OVRInput.GetActiveController();
 
-            if (controller == OVRInput.Controller.RTrackedRemote)
+            if (_controller == OVRInput.Controller.RTrackedRemote)
             {
-                _guage = rightGuage;
-
                 // 利き腕を変更した時に、今ま減少したゲージの長さを変更後にも反映させる
-                if (preGuage == OVRInput.Controller.LTrackedRemote)
+                if (_preGuage == OVRInput.Controller.LTrackedRemote)
                 {
                     GuageShapeChange();
                 }
-                preGuage = controller;
+                _preGuage = _controller;
             }
-            else if (controller == OVRInput.Controller.LTrackedRemote)
+            else if (_controller == OVRInput.Controller.LTrackedRemote)
             {
                 _guage = leftGuage;
-                if (preGuage == OVRInput.Controller.RTrackedRemote)
+                if (_preGuage == OVRInput.Controller.RTrackedRemote)
                 {
                     GuageShapeChange();
                 }
-                preGuage = controller;
+                _preGuage = _controller;
             }
         }
 
@@ -60,7 +57,7 @@ namespace VRGame
         /// </summary>
         public void Decreasing()
         {
-            guageNow -= Time.deltaTime;
+            _guageNow -= Time.deltaTime;
             GuageShapeChange();
         }
 
@@ -69,7 +66,7 @@ namespace VRGame
         /// </summary>
         private void GuageShapeChange()
         {
-            _guage.GetComponent<RectTransform>().sizeDelta = new Vector2(width * (guageNow / guageMax), _guage.GetComponent<RectTransform>().sizeDelta.y);
+            _guage.GetComponent<RectTransform>().sizeDelta = new Vector2(_width * (_guageNow / _guageMax), _guage.GetComponent<RectTransform>().sizeDelta.y);
         }
 
     }

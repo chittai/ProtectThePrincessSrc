@@ -7,19 +7,22 @@ namespace VRGame
 {
     public class WaitForSecondSceneChange : MonoBehaviour
     {
+
+        [SerializeField]
+        private int _second = 4;
+
         /// <summary>
         /// 指定した秒数後にシーンチェンジする
         /// </summary>
         /// <param name="sceneName">遷移先のシーン名</param>
         public void SceneChange(string sceneName)
         {
-            var second = 4;
-            StartCoroutine(WaitForSecondCoroutine(second, sceneName));
+            StartCoroutine(WaitForSecondCoroutine(sceneName));
         }
 
-        IEnumerator WaitForSecondCoroutine(int second, string sceneName)
+        IEnumerator WaitForSecondCoroutine(string sceneName)
         {
-            for (int i = 0; i < second; i++)
+            for (int i = 0; i < _second; i++)
             {
                 yield return new WaitForSeconds(1);
             }

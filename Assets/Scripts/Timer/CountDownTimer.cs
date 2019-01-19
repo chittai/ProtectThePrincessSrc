@@ -10,16 +10,15 @@ namespace VRGame
 
         public Text leftText;
         public Text rightText;
-        private Text timerText;
+        private Text _timerText;
 
-        public static int time { get; set; }
+        public static int time { get; set; } = 35;
 
         private OVRInput.Controller controller;
 
         void Start()
         {
             controller = OVRInput.GetActiveController();
-            time = 35;
         }
 
         void Update()
@@ -27,14 +26,14 @@ namespace VRGame
             // アクティブなコントローラを判定し、そのコントローラの子オブジェクトとして
             // 存在しているTextに時間を表示する
             controller = OVRInput.GetActiveController();
-
+            _timerText = rightText;
             if (controller == OVRInput.Controller.RTrackedRemote)
             {
-                timerText = rightText;
+                _timerText = rightText;
             }
             else if (controller == OVRInput.Controller.LTrackedRemote)
             {
-                timerText = leftText;
+                _timerText = leftText;
             }
         }
 
@@ -49,8 +48,8 @@ namespace VRGame
         IEnumerator TimerCoroutine()
         {
             while (time >= 0)
-            { 
-                timerText.text = time.ToString();
+            {
+                _timerText.text = time.ToString();
                 yield return new WaitForSeconds(1);
                 Debug.Log(time);
                 time--;
