@@ -23,24 +23,24 @@ namespace VRGame
             set { isArrivedDestination = value; }
         }
 
-        private float origin_x;
-        private float destination_x;
+        private float _originX;
+        private float _destinationX;
 
-        private float time;
+        private float _time;
 
-        private Animator animator;
-        private VRMBlendShapeProxy proxy;
+        private Animator _animator;
+        private VRMBlendShapeProxy _blendShapeProxy;
 
         private IEnumerator runningCoroutine;
 
         void Start()
         {
             isMoving = false;
-            animator = GetComponent<Animator>();
+            _animator = GetComponent<Animator>();
             isArrivedDestination = false;
-            destination_x = 0;
-            proxy = GetComponent<VRMBlendShapeProxy>();
-            proxy.SetValue(FacialExpressions.Puzzle.ToString(), 1);
+            _destinationX = 0;
+            _blendShapeProxy = GetComponent<VRMBlendShapeProxy>();
+            _blendShapeProxy.SetValue(FacialExpressions.Puzzle.ToString(), 1);
         }
 
         void Update()
@@ -52,10 +52,10 @@ namespace VRGame
 
             if (!isMoving)
             {
-                time += Time.deltaTime;
-                proxy.SetValue(FacialExpressions.Puzzle.ToString(), 1);
+                _time += Time.deltaTime;
+                _blendShapeProxy.SetValue(FacialExpressions.Puzzle.ToString(), 1);
 
-                if (time > 3.0f)
+                if (_time > 3.0f)
                 {
                     StartRunning();
                 }
@@ -67,12 +67,12 @@ namespace VRGame
         /// </summary>
         private void StartRunning()
         {
-            proxy.SetValue(FacialExpressions.Sorrow.ToString(), 0);
+            _blendShapeProxy.SetValue(FacialExpressions.Sorrow.ToString(), 0);
             isMoving = true;
-            time = 0;
+            _time = 0;
 
-            destination_x = Random.Range(-2.0f, 2.0f);
-            if (destination_x > origin_x)
+            _destinationX = Random.Range(-2.0f, 2.0f);
+            if (_destinationX > _originX)
             {
                 transform.Rotate(0, -90, 0);
             }
@@ -81,7 +81,7 @@ namespace VRGame
                 transform.Rotate(0, 90, 0);
             }
 
-            animator.SetBool("isRunning", true);
+            _animator.SetBool("isRunning", true);
             runningCoroutine = RunningCroutine();
             StartCoroutine(runningCoroutine);
         }
@@ -93,8 +93,8 @@ namespace VRGame
             movingParameter = Mathf.Clamp01(movingParameter);
 
             var origin = transform.position;
-            var destination = new Vector3(destination_x, transform.position.y, transform.position.z);
-            proxy.SetValue(FacialExpressions.Embarrassed.ToString(), 1.0f);
+            var destination = new Vector3(_destinationX, transform.position.y, transform.position.z);
+            _blendShapeProxy.SetValue(FacialExpressions.Embarrassed.ToString(), 1.0f);
 
             while (movingParameter <= 1)
             {
@@ -112,15 +112,15 @@ namespace VRGame
         /// </summary>
         public void StopRunning()
         {
-            animator.SetBool("isRunning", false);
+            _animator.SetBool("isRunning", false);
 
             if (runningCoroutine != null)
                 StopCoroutine(runningCoroutine);
 
-            origin_x = transform.position.x;
+            _originX = transform.position.x;
 
             transform.LookAt(new Vector3(transform.position.x, transform.position.y, transform.position.z - 1));
-            proxy.SetValue(FacialExpressions.Embarrassed.ToString(), 0);
+            _blendShapeProxy.SetValue(FacialExpressions.Embarrassed.ToString(), 0);
 
             isMoving = false;
             isArrivedDestination = false;

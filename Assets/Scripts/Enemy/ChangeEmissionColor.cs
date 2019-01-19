@@ -8,21 +8,21 @@ namespace VRGame
     public class ChangeEmissionColor : MonoBehaviour
     {
 
-        Timeline time;
+        private Timeline _time;
 
         void Start()
         {
-            time = GetComponent<Timeline>();
+            _time = GetComponent<Timeline>();
         }
 
         void Update()
         {
 
-            if (time.timeScale < 1)
+            if (_time.timeScale < 1)
             {
-                Renderer r = GetComponent<Renderer>();
-                r.material.EnableKeyword("_EMISSION");
-                r.material.SetColor("_EmissionColor", new Color(1, 0, 0));
+                Renderer renderer = GetComponent<Renderer>();
+                renderer.material.EnableKeyword("_EMISSION");
+                renderer.material.SetColor("_EmissionColor", new Color(1, 0, 0));
             }
         }
     }

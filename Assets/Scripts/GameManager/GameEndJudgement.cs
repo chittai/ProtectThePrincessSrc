@@ -6,25 +6,25 @@ namespace VRGame
 {
     public class GameEndJudgement : MonoBehaviour
     {
-        private bool isOver;
+        private bool _isOver;
 
         void Start()
         {
-            isOver = false;
+            _isOver = false;
         }
 
         void Update()
         {
 
-            if (HpDecreasing.hp < 0 && !isOver)
+            if (HpDecreasing.hp < 0 && !_isOver)
             {
                 GetComponent<GameOver>().GameEndDetail();
-                isOver = true;
+                _isOver = true;
             }
-            else if (CountDownTimer.time <= 0 && HpDecreasing.hp >= 0 && !isOver)
+            else if (CountDownTimer.time <= 0 && HpDecreasing.hp >= 0 && !_isOver)
             {
                 GetComponent<GameClear>().GameEndDetail();
-                isOver = true;
+                _isOver = true;
             }
         }
     }

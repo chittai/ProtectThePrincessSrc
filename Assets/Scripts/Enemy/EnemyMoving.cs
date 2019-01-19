@@ -7,10 +7,10 @@ namespace VRGame
     public class EnemyMoving : MonoBehaviour
     {
 
-        private Vector3 originPosition;
-        private Vector3 destinationPosition;
+        private Vector3 _originPosition;
+        private Vector3 _destinationPosition;
 
-        private bool isMoving;
+        private bool _isMoving;
 
         void Start()
         {
@@ -19,7 +19,7 @@ namespace VRGame
 
         void Update()
         {
-            if (!isMoving)
+            if (!_isMoving)
                 StartCoroutine("MovingNextPositionCoroutine");
         }
 
@@ -29,7 +29,7 @@ namespace VRGame
         /// <returns></returns>
         IEnumerator MovingNextPositionCoroutine()
         {
-            isMoving = true;
+            _isMoving = true;
 
             float positionX;
             float positionY;
@@ -39,19 +39,19 @@ namespace VRGame
             positionX = Random.Range(-2.0f, 2.0f);
             positionY = Random.Range(0, 3.0f);
 
-            originPosition = transform.position;
-            destinationPosition = new Vector3(positionX, positionY, transform.position.z);
+            _originPosition = transform.position;
+            _destinationPosition = new Vector3(positionX, positionY, transform.position.z);
 
             while (movingParameter <= 1)
             {
-                transform.position = Vector3.Lerp(originPosition, destinationPosition, movingParameter);
+                transform.position = Vector3.Lerp(_originPosition, _destinationPosition, movingParameter);
                 yield return null;
                 movingParameter += Time.deltaTime;
             }
 
             yield return new WaitForSeconds(1);
 
-            isMoving = false;
+            _isMoving = false;
 
         }
 

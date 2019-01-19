@@ -8,19 +8,19 @@ namespace VRGame
     public class CubeMoving : MonoBehaviour
     {
 
-        [SerializeField] private float speed = 13;
+        [SerializeField]
+        private float _speed = 13;
 
-        private Timeline timeLine;
+        private Timeline _timeLine;
 
         void Start()
         {
-            timeLine = GetComponent<Timeline>();
+            _timeLine = GetComponent<Timeline>();
         }
 
-        // Update is called once per frame
         void Update()
         {
-            this.transform.Translate(new Vector3(0, 0, 1) * timeLine.deltaTime * speed);
+            this.transform.Translate(new Vector3(0, 0, 1) * _timeLine.deltaTime * _speed);
         }
     }
 }
